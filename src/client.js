@@ -23,14 +23,5 @@ window.main = () => {
 };
   
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    hydrate(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>,
-      document.getElementById('root')
-    );
-  });
+  module.hot.accept();
 }

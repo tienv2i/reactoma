@@ -7,12 +7,7 @@ const port = process.env.PORT || 3000;
 
 let currentApp = app;
 
-Loadable.preloadAll().then(() => {
-  server.listen(port, err => {
-    if (err) console.log(err);
-      else console.log(`Listening at port 3000 ${port}`);
-  });
-}).catch(err => { console.log(err); });
+Loadable.preloadAll().then(() => { server.listen(port); });
 
 if (module.hot) {
   console.log('Server-side HMR Enabled!');
