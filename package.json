@@ -34,6 +34,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "node-sass": "^4.9.0",
+    "razzle-heroku": "^2.1.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1"
   }

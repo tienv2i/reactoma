@@ -2,10 +2,10 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const razzleHeroku = require("razzle-heroku");
 
 module.exports = {
   modify: (config, { target, dev }, webpack) => {
-  	let appConfig = config;
     // do something to config
     const isServer = target !== "web";
 
@@ -21,7 +21,7 @@ module.exports = {
   		}
     };
 
-    appConfig.resolve ? appConfig.resolve = Object.assign(appConfig.resolve, resolve) : appConfig.resolve = resolve;
+    config.resolve ? config.resolve = Object.assign(config.resolve, resolve) : config.resolve = resolve;
 
     const postCssLoader = {
       loader: "postcss-loader",
@@ -50,7 +50,7 @@ module.exports = {
       }
     };
 
-    appConfig.module.rules.push({
+    config.module.rules.push({
       test: /\.scss$/,
       use: isServer ? ["css-loader", sassLoader] : (
         dev ? [
@@ -76,15 +76,15 @@ module.exports = {
     });
 
     if (!isServer && !dev) {
-      appConfig.plugins.push(new ExtractTextPlugin("static/css/[name].[contenthash:8].css"));
+      config.plugins.push(new ExtractTextPlugin("static/css/[name].[contenthash:8].css"));
     }
     if (!isServer) {
-      appConfig.plugins.push(new ReactLoadablePlugin({
+      config.plugins.push(new ReactLoadablePlugin({
           filename: './build/react-loadable.json',
         })
       );
     }
-    
-    return appConfig;
+    config = razzleHeroku(config, {target, dev}, webpack);
+    return config;
   }
 }
