@@ -7,7 +7,7 @@
     "start": "rimraf build && razzle start",
     "build": "rimraf build && razzle build",
     "test": "rimraf build && razzle test --env=jsdom",
-    "start:prod": "cross-env NODE_ENV=production node build/server.js"
+    "start:prod": "cross-env NODE_ENV=production node ./build/server.js"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
