@@ -4,7 +4,7 @@ import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
 
-import App from './App.js';
+import App from 'common/App.js';
 import configureStore from 'store/configureStore.js';
 
 const store = configureStore(window.__PRELOADED_STATE__);

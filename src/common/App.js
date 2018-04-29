@@ -9,12 +9,13 @@ import 'assets/style.scss';
 
 const Home = Loadable({
 	loader: () => import('pages/Home'),
-	loading: null
-})
+	loading: Loading
+});
+
 const TodoApp = Loadable({
-	loader: () => import('pages/TodoApp'),
-	loading: null
-})
+	loader: () => import('pages/Todo'),
+	loading: Loading
+});
 
 
 const App = () => (
@@ -22,7 +23,8 @@ const App = () => (
 		<Appbar />
 	  <Switch>
 	    <Route exact path="/" component={Home} />
-	    <Route exact path="/todo" component={TodoApp} />
+	    <Route path="/todo" component={TodoApp} />
+	    <Route path="/test" component={Loading} />
 	  </Switch>
   </div>
 );

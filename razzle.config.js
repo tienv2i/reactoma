@@ -11,11 +11,13 @@ module.exports = {
 
     let resolve = {
   		alias: {
+        '~': path.resolve(__dirname),
   			'@': path.resolve(__dirname, 'src'),
-        assets: path.resolve(__dirname, 'src/assets'),
-        components: path.resolve(__dirname, 'src/components'),
-        pages: path.resolve(__dirname, 'src/pages'),
-        store: path.resolve(__dirname, 'src/store')
+        common: path.resolve(__dirname, 'src/common'),
+        assets: path.resolve(__dirname, 'src/common/assets'),
+        components: path.resolve(__dirname, 'src/common/components'),
+        pages: path.resolve(__dirname, 'src/common/pages'),
+        store: path.resolve(__dirname, 'src/common/store')
   		}
     };
 
@@ -76,13 +78,13 @@ module.exports = {
     if (!isServer && !dev) {
       appConfig.plugins.push(new ExtractTextPlugin("static/css/[name].[contenthash:8].css"));
     }
-
     if (!isServer) {
       appConfig.plugins.push(new ReactLoadablePlugin({
           filename: './build/react-loadable.json',
         })
       );
     }
+    
     return appConfig;
   }
 }

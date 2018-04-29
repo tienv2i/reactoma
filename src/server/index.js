@@ -1,16 +1,18 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
-import Loadable from 'react-loadable';
+import { Capture } from 'react-loadable';
 import { getBundles } from 'react-loadable/webpack';
 import express from 'express';
 import { Provider } from 'react-redux';
 import serialize from 'serialize-javascript';
+import {JssProvider, SheetsRegistry} from 'react-jss'
 
-import App from './App.js';
+import App from 'common/App.js';
 import configureStore from 'store/configureStore';
 
-import stats from '../build/react-loadable.json';
+import stats from '../../build/react-loadable.json';
+import api from './api';
 
 const preloadedState = { todos: [] };
 const store = configureStore(preloadedState);
@@ -20,19 +22,23 @@ const server = express();
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .use('/api', api)
   .get('/*', (req, res) => {
 
     const context = {};
     let modules = [];
+    const sheets = new SheetsRegistry();
 
     const markup = renderToString(
-      <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+      <Capture report={moduleName => modules.push(moduleName)}>
         <Provider store={store}>
           <StaticRouter context={context} location={req.url}>
-            <App />
+            <JssProvider registry={sheets}>
+              <App />
+            </JssProvider>
           </StaticRouter>
         </Provider>
-      </Loadable.Capture>
+      </Capture>
     );
 
     const finalState = store.getState();
@@ -54,6 +60,9 @@ server
               ${assets.client.css
                 ? `<link rel="stylesheet" href="${assets.client.css}">`
                 : ''}
+              <style type="text/css">
+                ${sheets.toString()}
+              </style>
           </head>
           <body>
               <div id="root">${markup}</div>

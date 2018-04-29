@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, FormControl, InputGroup, Button} from 'react-bootstrap';
 
-const AddTodo = (props) => {
+const AddItem = (props) => {
 	return (
 		<FormGroup>
 			<InputGroup>
@@ -14,4 +14,4 @@ const AddTodo = (props) => {
 	);
 };
 
-export default AddTodo;
+export default AddItem;

@@ -1,9 +1,10 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+
+$border-radius-base: 0px;
+
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
 .navbar{
-	border-radius: 0;
-	
 	.navbar-brand {
 		color: #00d8ff;
 	}
