@@ -668,7 +668,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var server = __WEBPACK_IMPORTED_MODULE_1_http___default.a.createServer(__WEBPACK_IMPORTED_MODULE_0__server__["a" /* default */]);
-var port = 3000 || 3000;
+var port = process.env.PORT || 3000;
 
 var currentApp = __WEBPACK_IMPORTED_MODULE_0__server__["a" /* default */];
 
