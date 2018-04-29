@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "razzle start",
-    "build": "razzle build",
+    "build": "rimraf build && razzle build",
     "test": "razzle test --env=jsdom",
     "start:prod": "cross-env NODE_ENV=production node ./build/server.js"
   },

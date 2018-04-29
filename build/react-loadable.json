@@ -5619,7 +5619,7 @@
       "file": "static/css/client.a40d00ae.css.map"
     }
   ],
-  "../transition/properties": [
+  "./properties": [
     {
       "id": "./node_modules/dom-helpers/transition/properties.js",
       "name": "./node_modules/dom-helpers/transition/properties.js",
